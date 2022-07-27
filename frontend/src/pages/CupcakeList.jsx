@@ -31,6 +31,7 @@ export default function CupcakeList() {
     setAccessories(e.target.value)
     console.log(accessories)
   }
+  
   return (
     <>
       <h1>My cupcakes</h1>

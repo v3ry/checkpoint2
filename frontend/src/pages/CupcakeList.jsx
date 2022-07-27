@@ -1,19 +1,29 @@
 import Cupcake from "@components/Cupcake";
-import React,{useState,useEffect} from "react";
+import React,{ useState, useEffect } from "react";
 import axios from "axios";
 
 export default function CupcakeList() {
-  const [apiData, setApiData] = useState([])
+  const [apiCupcakes, setApiCupcakes] = useState([]);
+  const [apiAccessories, setApiAccessories] = useState([]);
   // Step 1: get all cupcakes
   useEffect(() => {
     axios
     .get(`http://localhost:4000/cupcakes`)
-    .then(data => setApiData(data.data))
+    .then(data => setApiCupcakes(data.data))
+    //gestion des erreurs
+    .catch(error => console.warn('Authorization failed : ' + error.message));
+    },[])
+
+  useEffect(() => {
+    axios
+    .get(`http://localhost:4000/accessories`)
+    .then(data => setApiAccessories(data.data))
     //gestion des erreurs
     .catch(error => console.warn('Authorization failed : ' + error.message));
     },[])
   // Step 3: get all accessories
-  apiData && console.log(apiData);
+  console.log(apiCupcakes);
+  console.log(apiAccessories);
   return (
     <>
       <h1>My cupcakes</h1>

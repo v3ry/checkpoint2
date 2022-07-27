@@ -33,6 +33,9 @@ export default function CupcakeList() {
           <select id="cupcake-select">
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
+            {apiAccessories.map((acc,index)=>(
+              <option value={acc.name}>{acc.name}</option>
+            ))}
           </select>
         </label>
       </form>

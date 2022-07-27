@@ -1,5 +1,6 @@
-import React,{ useState, useEffect } from "react";
-import { useParams,useNavigate } from 'react-router-dom';
+import React, { useState, useEffect} from "react";
+import { useParams} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function CupcakeDetails() {
@@ -52,6 +53,7 @@ export default function CupcakeDetails() {
         </div>
   
         <div className="cupcake-name">{apiCupcakes.name}</div>
+        <Link to ={"/cupcakes"}><button>BACK</button></Link>
       </div>
         
         )

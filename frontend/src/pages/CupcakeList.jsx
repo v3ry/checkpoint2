@@ -28,10 +28,9 @@ export default function CupcakeList() {
 
   const onChangeAcc = (e)=>{
     e.preventDefault();
-    setAccessories(e.target.value)
-    console.log(accessories)
+    setAccessories(e.target.value);
   }
-  
+
   return (
     <>
       <h1>My cupcakes</h1>

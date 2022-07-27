@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Cupcake({ cupcake }) {
   return (
     <div className="cupcake-container">
+      <Link to={`/cupcakes/${cupcake.id}`}>
       <div className="cupcake">
         <img src={cupcake.url} alt="accessory" />
         <div className="cream">
@@ -37,7 +39,7 @@ export default function Cupcake({ cupcake }) {
           </div>
         </div>
       </div>
-
+      </Link>
       <div className="cupcake-name">{cupcake.name}</div>
     </div>
   );

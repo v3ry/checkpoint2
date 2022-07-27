@@ -13,7 +13,7 @@ export default function CupcakeList() {
     //gestion des erreurs
     .catch(error => console.warn('Authorization failed : ' + error.message));
     },[])
-
+    // Step 3: get all accessories
   useEffect(() => {
     axios
     .get(`http://localhost:4000/accessories`)
@@ -21,9 +21,9 @@ export default function CupcakeList() {
     //gestion des erreurs
     .catch(error => console.warn('Authorization failed : ' + error.message));
     },[])
-  // Step 3: get all accessories
-  console.log(apiCupcakes);
-  console.log(apiAccessories);
+  
+  apiCupcakes && console.log(apiCupcakes);
+  apiAccessories && console.log(apiAccessories);
   return (
     <>
       <h1>My cupcakes</h1>
@@ -38,9 +38,12 @@ export default function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
-        <li className="cupcake-item">
-          <Cupcake />
+        {apiCupcakes.map((cup,index)=>(
+        <li key={index} className="cupcake-item">
+          <Cupcake cupcake={cup}/>
         </li>
+        ))  
+        }
         {/* end of block */}
       </ul>
     </>

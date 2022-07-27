@@ -5,6 +5,7 @@ import axios from "axios";
 export default function CupcakeList() {
   const [apiCupcakes, setApiCupcakes] = useState([]);
   const [apiAccessories, setApiAccessories] = useState([]);
+  const [accessories, setAccessories] = useState("");
   // Step 1: get all cupcakes
   useEffect(() => {
     axios
@@ -24,24 +25,32 @@ export default function CupcakeList() {
   
   apiCupcakes && console.log(apiCupcakes);
   apiAccessories && console.log(apiAccessories);
+
+  const onChangeAcc = (e)=>{
+    e.preventDefault();
+    setAccessories(e.target.value)
+    console.log(accessories)
+  }
   return (
     <>
       <h1>My cupcakes</h1>
       <form className="center">
         <label htmlFor="cupcake-select">
           Filter by{" "}
-          <select id="cupcake-select">
+          <select id="cupcake-select" onChange={onChangeAcc}>
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
             {apiAccessories.map((acc,index)=>(
-              <option value={acc.name}>{acc.name}</option>
+              <option key={"acc" + index} value={acc.id}>{acc.name}</option>
             ))}
           </select>
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
-        {apiCupcakes.map((cup,index)=>(
+        {apiCupcakes
+        .filter(val=> val.accessory_id === accessories || accessories === "")
+        .map((cup,index)=>(
         <li key={index} className="cupcake-item">
           <Cupcake cupcake={cup}/>
         </li>
